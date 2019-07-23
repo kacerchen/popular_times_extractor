@@ -2,7 +2,7 @@ const busy_hours = require('./processing_funcs').busy_hours;
 const export_file = require('./processing_funcs').export_file;
 
 let placeID = 'ChIJD4O5M3h644kR_nMnL0JA4no';
-let APIkey = 'AIzaSyCNvvXK6LlKWV5F6QpRIobRz541qYt865A';
+let APIkey = '';
 
 busy_hours(placeID, APIkey)
     .then(data => {
