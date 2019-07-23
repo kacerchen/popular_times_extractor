@@ -163,5 +163,65 @@ module.exports = {
         }
 
 
+    },
+
+    export_file: function(data) {
+        const csvWriter = require('csv-writer').createObjectCsvWriter({
+            path: 'out.csv',
+            header: [
+              {id: 'time', title: 'Time'},
+              {id: 'Mon', title: 'Mon'},
+              {id: 'Tue', title: 'Tue'},
+              {id: 'Wed', title: 'Wed'},
+              {id: 'Thu', title: 'Thu'},
+              {id: 'Fri', title: 'Fri'},
+              {id: 'Sat', title: 'Sat'},
+              {id: 'Sun', title: 'Sun'}
+            ]
+        });
+        const times = ['6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM', '10 PM', '11 PM'];
+        let filedata = [];
+
+        try{
+            for(let time of times) {
+                let obj = {time: time, Mon: '', Tue: '', Wed: '', Thu: '', Fri: '', Sat: '', Sun: ''};
+                for(let e of data) {
+                    e.busy_hour.map((hours) => {
+                        if(hours.time == time) {
+                          switch(e.weekday) {
+                            case 'Sun':
+                              obj.Sun = hours.data;
+                              break;
+                            case 'Mon':
+                              obj.Mon = hours.data;
+                              break;
+                            case 'Tue':
+                              obj.Tue = hours.data;
+                              break;
+                            case 'Wed':
+                              obj.Wed = hours.data;
+                              break;
+                            case 'Thu':
+                              obj.Thu = hours.data;
+                              break;
+                            case 'Fri':
+                              obj.Fri = hours.data;
+                              break;
+                            case 'Sat':
+                              obj.Sat = hours.data;
+                              break;
+                          }
+                        }
+                    })
+                }
+                filedata.push(obj);
+            }
+      
+            csvWriter
+            .writeRecords(filedata)
+            .then(()=> console.log('The CSV file was written successfully'));
+        } catch (err) {
+            return {status: 'error', message: 'Error: ' + err};
+        }
     }
 }

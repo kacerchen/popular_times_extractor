@@ -1,7 +1,8 @@
 const busy_hours = require('./processing_funcs').busy_hours;
+const export_file = require('./processing_funcs').export_file;
 
-let placeID = 'ChIJD4GOEqSMGGAR5j34yZSIKzc';
-let APIkey = '';
+let placeID = 'ChIJD4O5M3h644kR_nMnL0JA4no';
+let APIkey = 'AIzaSyCNvvXK6LlKWV5F6QpRIobRz541qYt865A';
 
 busy_hours(placeID, APIkey)
     .then(data => {
@@ -16,6 +17,8 @@ busy_hours(placeID, APIkey)
                 console.log(hours);
             })
         }
+        export_file(data);        
+
     }).catch(err => {
         console.log("Error: " + err);
     });
