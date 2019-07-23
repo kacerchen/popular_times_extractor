@@ -17,7 +17,8 @@ busy_hours(placeID, APIkey)
                 console.log(hours);
             })
         }
-        export_file(data);        
+
+        data[0].busy_hour[0].data == 'null' ? console.log('No data to export.') : export_file(data);        
 
     }).catch(err => {
         console.log("Error: " + err);
