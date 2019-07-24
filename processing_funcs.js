@@ -179,8 +179,12 @@ module.exports = {
               {id: 'Sun', title: 'Sun'}
             ]
         });
-        const times = ['6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM', '10 PM', '11 PM'];
+        const times_en = ['6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM', '10 PM', '11 PM'];
+        const times_zh = ['6時', '7時', '8時', '9時', '10時', '11時', '12時', '13時', '14時', '15時', '16時', '17時', '18時', '19時', '20時', '21時', '22時', '23時'];
+        let times = [];
         let filedata = [];
+
+        data[0].busy_hour[0].time.includes('AM') ? times = times_en : times = times_zh;
 
         try{
             for(let time of times) {
