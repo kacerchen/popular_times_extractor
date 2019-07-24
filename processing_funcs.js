@@ -165,9 +165,9 @@ module.exports = {
 
     },
 
-    export_file: function(data) {
+    export_file: function(data, place_id) {
         const csvWriter = require('csv-writer').createObjectCsvWriter({
-            path: 'out.csv',
+            path: 'out_' + place_id + '.csv',
             header: [
               {id: 'time', title: 'Time'},
               {id: 'Mon', title: 'Mon'},
@@ -188,7 +188,8 @@ module.exports = {
 
         try{
             for(let time of times) {
-                let obj = {time: time, Mon: '', Tue: '', Wed: '', Thu: '', Fri: '', Sat: '', Sun: ''};
+                let index = times.indexOf(time);
+                let obj = {time: times_en[index], Mon: '', Tue: '', Wed: '', Thu: '', Fri: '', Sat: '', Sun: ''};
                 for(let e of data) {
                     e.busy_hour.map((hours) => {
                         if(hours.time == time) {
