@@ -25,11 +25,12 @@ module.exports = {
                 script = html.substring(html.lastIndexOf(str[0]) + str[0].length, html.lastIndexOf(str[1]));
 
             // Extract common parts of script for different place ID which include busy hour data
-            let second = eval(script)[3][14].split(")]}'")[1].split(",[[[");
+            // console.log(eval(script)[3][6].split(")]}'")[1].split(",[[["));
+            let second = eval(script)[3][6].split(")]}'")[1].split(",[[[");
 
             for(let i = 0; i < second.length; i++) {
                 if(second[i][0] == 7){
-                    second = eval(script)[3][14].split(")]}'")[1].split(",[[[")[i].split(",[[");
+                    second = eval(script)[3][6].split(")]}'")[1].split(",[[[")[i].split(",[[");
                 }
             }
             let results = [];
